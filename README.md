@@ -1,1 +1,2 @@
-# C
+# the hierarchy of folders is as follows C/" MCU "/"FAMILY OF THE MCU"/" LAYER IN WHICH THE DRIVER EXISTS"/" DRIVER NAME"/
+# example: C/AVR DRIVERS/ATMEGA32A/HAL-DRIVERS/GPIO_DRIVER/
