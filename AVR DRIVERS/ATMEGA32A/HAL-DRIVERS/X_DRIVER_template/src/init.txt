@@ -1,4 +1,0 @@
-edit the config.json file for building your files.
-doxygen -g
-doxygen Doxyfile
-gg ez

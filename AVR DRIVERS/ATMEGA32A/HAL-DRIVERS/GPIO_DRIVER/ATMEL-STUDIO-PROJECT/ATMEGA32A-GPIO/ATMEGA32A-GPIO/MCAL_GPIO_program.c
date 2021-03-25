@@ -1,11 +1,3 @@
- /********************************************************************
- * File name: MCAL_GPIO_program.h									 *
- * Author : Barbary													 *
- * Created: 29-Jan-21 10:19:20 PM									 *
- * Description: This file includes the program for the GPIO			 *
- ********************************************************************/ 
- 
-
 /**
  * @file MCAL_GPIO_program.c
  * @author Mohamed El Barbary (Mohmbarbary@gmail.com)
