@@ -1,0 +1,434 @@
+
+ATMEGA32A-GPIO.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000020c  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000260  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000260  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000290  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000058  00000000  00000000  000002cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000007cb  00000000  00000000  00000324  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000005b3  00000000  00000000  00000aef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003d8  00000000  00000000  000010a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000078  00000000  00000000  0000147c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003b0  00000000  00000000  000014f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000607  00000000  00000000  000018a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000038  00000000  00000000  00001eab  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 04 01 	jmp	0x208	; 0x208 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+ * @return returns 0 on successful and -1 if an error occurs  
+ */
+int main(void)
+{
+	
+	MCAL_GPIO_PinMode(PORTC, (LED0 | LED1), OUTPUT);	
+  6c:	42 e0       	ldi	r20, 0x02	; 2
+  6e:	64 e8       	ldi	r22, 0x84	; 132
+  70:	82 e0       	ldi	r24, 0x02	; 2
+  72:	0e 94 5a 00 	call	0xb4	; 0xb4 <MCAL_GPIO_PinMode>
+	MCAL_GPIO_PinMode(PORTD, LED2, OUTPUT);
+  76:	42 e0       	ldi	r20, 0x02	; 2
+  78:	68 e0       	ldi	r22, 0x08	; 8
+  7a:	83 e0       	ldi	r24, 0x03	; 3
+  7c:	0e 94 5a 00 	call	0xb4	; 0xb4 <MCAL_GPIO_PinMode>
+	
+	MCAL_GPIO_PinMode(PORTB, (PUSHB0 | PUSHB1), INPUT_FLOAT);
+  80:	40 e0       	ldi	r20, 0x00	; 0
+  82:	61 e1       	ldi	r22, 0x11	; 17
+  84:	81 e0       	ldi	r24, 0x01	; 1
+  86:	0e 94 5a 00 	call	0xb4	; 0xb4 <MCAL_GPIO_PinMode>
+	MCAL_GPIO_PinMode(PORTD, PUSHB2, INPUT_FLOAT);
+  8a:	40 e0       	ldi	r20, 0x00	; 0
+  8c:	64 e0       	ldi	r22, 0x04	; 4
+  8e:	83 e0       	ldi	r24, 0x03	; 3
+  90:	0e 94 5a 00 	call	0xb4	; 0xb4 <MCAL_GPIO_PinMode>
+	
+	MCAL_GPIO_PinMode(PORTA, PIN2, OUTPUT);
+  94:	42 e0       	ldi	r20, 0x02	; 2
+  96:	64 e0       	ldi	r22, 0x04	; 4
+  98:	80 e0       	ldi	r24, 0x00	; 0
+  9a:	0e 94 5a 00 	call	0xb4	; 0xb4 <MCAL_GPIO_PinMode>
+	
+	
+	while (1)				
+    {
+		
+		MCAL_GPIO_PinState(PORTA, PIN2, HIGH);
+  9e:	41 e0       	ldi	r20, 0x01	; 1
+  a0:	64 e0       	ldi	r22, 0x04	; 4
+  a2:	80 e0       	ldi	r24, 0x00	; 0
+  a4:	0e 94 c3 00 	call	0x186	; 0x186 <MCAL_GPIO_PinState>
+		//_delay_ms(3000);
+		MCAL_GPIO_PinState(PORTA, PIN2, LOW);
+  a8:	40 e0       	ldi	r20, 0x00	; 0
+  aa:	64 e0       	ldi	r22, 0x04	; 4
+  ac:	80 e0       	ldi	r24, 0x00	; 0
+  ae:	0e 94 c3 00 	call	0x186	; 0x186 <MCAL_GPIO_PinState>
+  b2:	f5 cf       	rjmp	.-22     	; 0x9e <main+0x32>
+
+000000b4 <MCAL_GPIO_PinMode>:
+void MCAL_GPIO_PinMode(u8_t au8_port , u8_t au8_pin , u8_t au8_type){
+	/**
+	 * @brief We will switch over the au_8port given and once we find it, we will switch over the au8_type and then we set up our mode.
+	 * 
+	 */
+	switch(au8_port){
+  b4:	81 30       	cpi	r24, 0x01	; 1
+  b6:	f9 f0       	breq	.+62     	; 0xf6 <MCAL_GPIO_PinMode+0x42>
+  b8:	30 f0       	brcs	.+12     	; 0xc6 <MCAL_GPIO_PinMode+0x12>
+  ba:	82 30       	cpi	r24, 0x02	; 2
+  bc:	a1 f1       	breq	.+104    	; 0x126 <MCAL_GPIO_PinMode+0x72>
+  be:	83 30       	cpi	r24, 0x03	; 3
+  c0:	09 f4       	brne	.+2      	; 0xc4 <MCAL_GPIO_PinMode+0x10>
+  c2:	49 c0       	rjmp	.+146    	; 0x156 <MCAL_GPIO_PinMode+0xa2>
+  c4:	08 95       	ret
+		/**
+		 * @brief The registers used in order to alter the I/P or O/P modes. MCAL_DDRx, MCAL_PORTx.
+		 * 
+		 */
+		case PORTA:
+			switch(au8_type)
+  c6:	41 30       	cpi	r20, 0x01	; 1
+  c8:	49 f0       	breq	.+18     	; 0xdc <MCAL_GPIO_PinMode+0x28>
+  ca:	18 f0       	brcs	.+6      	; 0xd2 <MCAL_GPIO_PinMode+0x1e>
+  cc:	42 30       	cpi	r20, 0x02	; 2
+  ce:	79 f0       	breq	.+30     	; 0xee <MCAL_GPIO_PinMode+0x3a>
+  d0:	08 95       	ret
+			{
+				case INPUT_FLOAT:
+					MCAL_DDRA &= ~au8_pin;
+  d2:	8a b3       	in	r24, 0x1a	; 26
+  d4:	60 95       	com	r22
+  d6:	68 23       	and	r22, r24
+  d8:	6a bb       	out	0x1a, r22	; 26
+					break;
+  da:	08 95       	ret
+				case INPUT_PULLUP:
+					MCAL_DDRA &= ~au8_pin;
+  dc:	8a b3       	in	r24, 0x1a	; 26
+  de:	96 2f       	mov	r25, r22
+  e0:	90 95       	com	r25
+  e2:	89 23       	and	r24, r25
+  e4:	8a bb       	out	0x1a, r24	; 26
+					MCAL_PORTA |= au8_pin;
+  e6:	8b b3       	in	r24, 0x1b	; 27
+  e8:	68 2b       	or	r22, r24
+  ea:	6b bb       	out	0x1b, r22	; 27
+					break;
+  ec:	08 95       	ret
+				case OUTPUT:
+					MCAL_DDRA |= au8_pin;
+  ee:	8a b3       	in	r24, 0x1a	; 26
+  f0:	68 2b       	or	r22, r24
+  f2:	6a bb       	out	0x1a, r22	; 26
+					break;
+  f4:	08 95       	ret
+				default:
+					break;
+			}
+			break;
+		case PORTB:
+		switch(au8_type)
+  f6:	41 30       	cpi	r20, 0x01	; 1
+  f8:	49 f0       	breq	.+18     	; 0x10c <MCAL_GPIO_PinMode+0x58>
+  fa:	18 f0       	brcs	.+6      	; 0x102 <MCAL_GPIO_PinMode+0x4e>
+  fc:	42 30       	cpi	r20, 0x02	; 2
+  fe:	79 f0       	breq	.+30     	; 0x11e <MCAL_GPIO_PinMode+0x6a>
+ 100:	08 95       	ret
+		{
+			case INPUT_FLOAT:
+				MCAL_DDRB &= ~au8_pin;
+ 102:	87 b3       	in	r24, 0x17	; 23
+ 104:	60 95       	com	r22
+ 106:	68 23       	and	r22, r24
+ 108:	67 bb       	out	0x17, r22	; 23
+				break;
+ 10a:	08 95       	ret
+			case INPUT_PULLUP:
+				MCAL_DDRB &= ~au8_pin;
+ 10c:	87 b3       	in	r24, 0x17	; 23
+ 10e:	96 2f       	mov	r25, r22
+ 110:	90 95       	com	r25
+ 112:	89 23       	and	r24, r25
+ 114:	87 bb       	out	0x17, r24	; 23
+			MCAL_PORTB |= au8_pin;
+ 116:	88 b3       	in	r24, 0x18	; 24
+ 118:	68 2b       	or	r22, r24
+ 11a:	68 bb       	out	0x18, r22	; 24
+				break;
+ 11c:	08 95       	ret
+			case OUTPUT:
+				MCAL_DDRB |= au8_pin;
+ 11e:	87 b3       	in	r24, 0x17	; 23
+ 120:	68 2b       	or	r22, r24
+ 122:	67 bb       	out	0x17, r22	; 23
+				break;
+ 124:	08 95       	ret
+			default:
+				break;
+		}
+		break;
+		case PORTC:
+		switch(au8_type)
+ 126:	41 30       	cpi	r20, 0x01	; 1
+ 128:	49 f0       	breq	.+18     	; 0x13c <MCAL_GPIO_PinMode+0x88>
+ 12a:	18 f0       	brcs	.+6      	; 0x132 <MCAL_GPIO_PinMode+0x7e>
+ 12c:	42 30       	cpi	r20, 0x02	; 2
+ 12e:	79 f0       	breq	.+30     	; 0x14e <MCAL_GPIO_PinMode+0x9a>
+ 130:	08 95       	ret
+		{
+			case INPUT_FLOAT:
+				MCAL_DDRC &= ~au8_pin;
+ 132:	84 b3       	in	r24, 0x14	; 20
+ 134:	60 95       	com	r22
+ 136:	68 23       	and	r22, r24
+ 138:	64 bb       	out	0x14, r22	; 20
+				break;
+ 13a:	08 95       	ret
+			case INPUT_PULLUP:
+				MCAL_DDRC &= ~au8_pin;
+ 13c:	84 b3       	in	r24, 0x14	; 20
+ 13e:	96 2f       	mov	r25, r22
+ 140:	90 95       	com	r25
+ 142:	89 23       	and	r24, r25
+ 144:	84 bb       	out	0x14, r24	; 20
+				MCAL_PORTC |= au8_pin;
+ 146:	85 b3       	in	r24, 0x15	; 21
+ 148:	68 2b       	or	r22, r24
+ 14a:	65 bb       	out	0x15, r22	; 21
+				break;
+ 14c:	08 95       	ret
+			case OUTPUT:
+				MCAL_DDRC |= au8_pin;
+ 14e:	84 b3       	in	r24, 0x14	; 20
+ 150:	68 2b       	or	r22, r24
+ 152:	64 bb       	out	0x14, r22	; 20
+				break;
+ 154:	08 95       	ret
+			default:
+				break;
+		}
+		break;
+		case PORTD:
+		switch(au8_type)
+ 156:	41 30       	cpi	r20, 0x01	; 1
+ 158:	49 f0       	breq	.+18     	; 0x16c <MCAL_GPIO_PinMode+0xb8>
+ 15a:	18 f0       	brcs	.+6      	; 0x162 <MCAL_GPIO_PinMode+0xae>
+ 15c:	42 30       	cpi	r20, 0x02	; 2
+ 15e:	79 f0       	breq	.+30     	; 0x17e <MCAL_GPIO_PinMode+0xca>
+ 160:	08 95       	ret
+		{
+			case INPUT_FLOAT:
+				MCAL_DDRD &= ~au8_pin;
+ 162:	81 b3       	in	r24, 0x11	; 17
+ 164:	60 95       	com	r22
+ 166:	68 23       	and	r22, r24
+ 168:	61 bb       	out	0x11, r22	; 17
+				break;
+ 16a:	08 95       	ret
+			case INPUT_PULLUP:
+				MCAL_DDRD &= ~au8_pin;
+ 16c:	81 b3       	in	r24, 0x11	; 17
+ 16e:	96 2f       	mov	r25, r22
+ 170:	90 95       	com	r25
+ 172:	89 23       	and	r24, r25
+ 174:	81 bb       	out	0x11, r24	; 17
+				MCAL_PORTD |= au8_pin;
+ 176:	82 b3       	in	r24, 0x12	; 18
+ 178:	68 2b       	or	r22, r24
+ 17a:	62 bb       	out	0x12, r22	; 18
+				break;
+ 17c:	08 95       	ret
+			case OUTPUT:
+				MCAL_DDRD |= au8_pin;
+ 17e:	81 b3       	in	r24, 0x11	; 17
+ 180:	68 2b       	or	r22, r24
+ 182:	61 bb       	out	0x11, r22	; 17
+ 184:	08 95       	ret
+
+00000186 <MCAL_GPIO_PinState>:
+void MCAL_GPIO_PinState(u8_t au8_port , u8_t au8_pin , u8_t au8_state){
+	/**
+	 * @brief We will switch over the au_8port given and once we find it, we will switch over the au8_type and then we set up our state.
+	 * 
+	 */
+	switch(au8_port){
+ 186:	81 11       	cpse	r24, r1
+ 188:	0f c0       	rjmp	.+30     	; 0x1a8 <MCAL_GPIO_PinState+0x22>
+		/**
+		 * @brief The registers used in order to alter the I/P or O/P states. MCAL_PORTx.
+		 * 
+		 */
+		case PORTA:
+		switch(au8_state)
+ 18a:	44 23       	and	r20, r20
+ 18c:	19 f0       	breq	.+6      	; 0x194 <MCAL_GPIO_PinState+0xe>
+ 18e:	41 30       	cpi	r20, 0x01	; 1
+ 190:	39 f0       	breq	.+14     	; 0x1a0 <MCAL_GPIO_PinState+0x1a>
+ 192:	0a c0       	rjmp	.+20     	; 0x1a8 <MCAL_GPIO_PinState+0x22>
+		{
+			case LOW:
+			MCAL_PORTA &= ~au8_pin;
+ 194:	9b b3       	in	r25, 0x1b	; 27
+ 196:	26 2f       	mov	r18, r22
+ 198:	20 95       	com	r18
+ 19a:	92 23       	and	r25, r18
+ 19c:	9b bb       	out	0x1b, r25	; 27
+			break;
+ 19e:	24 c0       	rjmp	.+72     	; 0x1e8 <MCAL_GPIO_PinState+0x62>
+			case HIGH:
+			MCAL_PORTA |= au8_pin;
+ 1a0:	9b b3       	in	r25, 0x1b	; 27
+ 1a2:	96 2b       	or	r25, r22
+ 1a4:	9b bb       	out	0x1b, r25	; 27
+			break;
+ 1a6:	20 c0       	rjmp	.+64     	; 0x1e8 <MCAL_GPIO_PinState+0x62>
+			default:
+			break;
+		}
+		break;
+	}
+	switch(au8_port){
+ 1a8:	81 30       	cpi	r24, 0x01	; 1
+ 1aa:	71 f4       	brne	.+28     	; 0x1c8 <MCAL_GPIO_PinState+0x42>
+		case PORTB:
+			switch(au8_state)
+ 1ac:	44 23       	and	r20, r20
+ 1ae:	19 f0       	breq	.+6      	; 0x1b6 <MCAL_GPIO_PinState+0x30>
+ 1b0:	41 30       	cpi	r20, 0x01	; 1
+ 1b2:	31 f0       	breq	.+12     	; 0x1c0 <MCAL_GPIO_PinState+0x3a>
+ 1b4:	09 c0       	rjmp	.+18     	; 0x1c8 <MCAL_GPIO_PinState+0x42>
+			{
+				case LOW:
+					MCAL_PORTB &= ~au8_pin;
+ 1b6:	88 b3       	in	r24, 0x18	; 24
+ 1b8:	60 95       	com	r22
+ 1ba:	68 23       	and	r22, r24
+ 1bc:	68 bb       	out	0x18, r22	; 24
+					break;
+ 1be:	08 95       	ret
+				case HIGH:
+					MCAL_PORTB |= au8_pin;
+ 1c0:	88 b3       	in	r24, 0x18	; 24
+ 1c2:	68 2b       	or	r22, r24
+ 1c4:	68 bb       	out	0x18, r22	; 24
+					break;
+ 1c6:	08 95       	ret
+				default:
+					break;
+			}
+			break;
+	}
+	switch(au8_port){
+ 1c8:	82 30       	cpi	r24, 0x02	; 2
+ 1ca:	71 f4       	brne	.+28     	; 0x1e8 <MCAL_GPIO_PinState+0x62>
+		case PORTC:
+			switch(au8_state)
+ 1cc:	44 23       	and	r20, r20
+ 1ce:	19 f0       	breq	.+6      	; 0x1d6 <MCAL_GPIO_PinState+0x50>
+ 1d0:	41 30       	cpi	r20, 0x01	; 1
+ 1d2:	31 f0       	breq	.+12     	; 0x1e0 <MCAL_GPIO_PinState+0x5a>
+ 1d4:	09 c0       	rjmp	.+18     	; 0x1e8 <MCAL_GPIO_PinState+0x62>
+			{
+				case LOW:
+					MCAL_PORTC &= ~au8_pin;
+ 1d6:	85 b3       	in	r24, 0x15	; 21
+ 1d8:	60 95       	com	r22
+ 1da:	68 23       	and	r22, r24
+ 1dc:	65 bb       	out	0x15, r22	; 21
+					break;
+ 1de:	08 95       	ret
+				case HIGH:
+					MCAL_PORTC |= au8_pin;
+ 1e0:	85 b3       	in	r24, 0x15	; 21
+ 1e2:	68 2b       	or	r22, r24
+ 1e4:	65 bb       	out	0x15, r22	; 21
+					break;
+ 1e6:	08 95       	ret
+				default:
+					break;
+			}
+			break;
+	}
+	switch(au8_port){
+ 1e8:	83 30       	cpi	r24, 0x03	; 3
+ 1ea:	69 f4       	brne	.+26     	; 0x206 <MCAL_GPIO_PinState+0x80>
+		case PORTD:
+			switch(au8_state)
+ 1ec:	44 23       	and	r20, r20
+ 1ee:	19 f0       	breq	.+6      	; 0x1f6 <MCAL_GPIO_PinState+0x70>
+ 1f0:	41 30       	cpi	r20, 0x01	; 1
+ 1f2:	31 f0       	breq	.+12     	; 0x200 <MCAL_GPIO_PinState+0x7a>
+ 1f4:	08 95       	ret
+			{
+				case LOW:
+					MCAL_PORTD &= ~au8_pin;
+ 1f6:	82 b3       	in	r24, 0x12	; 18
+ 1f8:	60 95       	com	r22
+ 1fa:	68 23       	and	r22, r24
+ 1fc:	62 bb       	out	0x12, r22	; 18
+					break;
+ 1fe:	08 95       	ret
+				case HIGH:
+					MCAL_PORTD |= au8_pin;
+ 200:	82 b3       	in	r24, 0x12	; 18
+ 202:	68 2b       	or	r22, r24
+ 204:	62 bb       	out	0x12, r22	; 18
+ 206:	08 95       	ret
+
+00000208 <_exit>:
+ 208:	f8 94       	cli
+
+0000020a <__stop_program>:
+ 20a:	ff cf       	rjmp	.-2      	; 0x20a <__stop_program>

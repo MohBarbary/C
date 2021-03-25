@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "lstd_types.h": "c",
+        "delay.h": "c"
+    }
+}
