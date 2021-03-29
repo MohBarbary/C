@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Mohamed El Barbary (mohmbarbary@gmail.com)
- * @brief This is the main function that is used to test the functionality of our LCD16x8 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
+ * @brief This is the main function that is used to test the functionality of our LCD16x2 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
  * @version 1.0
  * @date 5-02-2021 9:57:56 PM
  * 

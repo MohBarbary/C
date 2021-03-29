@@ -1,7 +1,7 @@
 /**
  * @file HAL_LCD_private.h
  * @author Mohamed El Barbary (mohmbarbary@gmail.com)
- * @brief This is the h file that is used to store the private variables and declarations of our LCD16x8 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
+ * @brief This is the h file that is used to store the private variables and declarations of our LCD16x2 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
  * @version 1.0
  * @date 29-01-2021 10:19:20 PM
  * 

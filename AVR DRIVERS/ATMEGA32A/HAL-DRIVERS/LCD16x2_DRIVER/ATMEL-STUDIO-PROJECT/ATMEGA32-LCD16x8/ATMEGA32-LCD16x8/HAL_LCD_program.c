@@ -66,7 +66,7 @@ static void HAL_LCD_sendCMD(u8_t au8_cmd){
  * @brief HAL_LCD_sendData is a static helper function created to improve the readability of the code and to make it easier to understand. This function is used to process any data that
  * we pass to it from any other function.
  * 
- * @param au8_data is the variable containing the data that we will display on the LCD16x8
+ * @param au8_data is the variable containing the data that we will display on the LCD16x2
  */
 static void HAL_LCD_sendData(u8_t au8_data){
 	
@@ -102,7 +102,7 @@ static void HAL_LCD_sendData(u8_t au8_data){
 }
 
 /**
- * @brief HAL_LCD_init is the LCD16x8 Initializing function.
+ * @brief HAL_LCD_init is the LCD16x2 Initializing function.
  * 
  */
 void HAL_LCD_init(void){
@@ -160,9 +160,9 @@ void HAL_LCD_init(void){
 }
 
 /**
- * @brief HAL_LCD_displayCharacter is a function that displays the character passed as a parameter on the LCD16x8.
+ * @brief HAL_LCD_displayCharacter is a function that displays the character passed as a parameter on the LCD16x2.
  * 
- * @param au8_charData is the data that will be passed to the LCD16x8.
+ * @param au8_charData is the data that will be passed to the LCD16x2.
  */
 void HAL_LCD_displayCharacter(u8_t au8_charData){
 	
@@ -173,7 +173,7 @@ void HAL_LCD_displayCharacter(u8_t au8_charData){
 }
 
 /**
- * @brief HAL_LCD_displayString is a function that displays a given string on the LCD16x8 screen (!Be careful of character overflows!)
+ * @brief HAL_LCD_displayString is a function that displays a given string on the LCD16x2 screen (!Be careful of character overflows!)
  * 
  * @param pu8_srtData is a pointer to the 8 bits of dat that will be displayed. 
  */
@@ -190,7 +190,7 @@ void HAL_LCD_displayString(u8_t* pu8_srtData){
 }
 
 /**
- * @brief HAL_LCD_putAtLoc is a function that moves the cursor of the LCD16x8 to the DDRAM address passed.
+ * @brief HAL_LCD_putAtLoc is a function that moves the cursor of the LCD16x2 to the DDRAM address passed.
  * 
  * @param au8_row is the variable containing the row where we want to move (!DO NOT FORGET TO USE THE MACROS!)
  * @param au8_col is the variable containing the column where we want to move (!DO NOT FORGET TO USE THE MACROS!)
@@ -201,7 +201,7 @@ void HAL_LCD_putAtLoc(u8_t au8_row, u8_t au8_col){
 }
 
 /**
- * @brief HAL_LCD_clearDisplay is a function that clears the display of the LCD16x8.
+ * @brief HAL_LCD_clearDisplay is a function that clears the display of the LCD16x2.
  * 
  */
 void HAL_LCD_clearDisplay(void){

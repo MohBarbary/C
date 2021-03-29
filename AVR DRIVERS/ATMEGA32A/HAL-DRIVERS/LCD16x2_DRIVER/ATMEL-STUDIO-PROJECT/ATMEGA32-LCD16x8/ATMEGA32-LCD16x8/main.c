@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Mohamed El Barbary (mohmbarbary@gmail.com)
- * @brief This is the main function that is used to test the functionality of our LCD16x8 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
+ * @brief This is the main function that is used to test the functionality of our LCD16x2 Driver. !PLEASE DON'T FORGET TO USE DELAYS!
  * @version 1.0
  * @date 5-02-2021 9:57:56 PM
  * 
@@ -14,7 +14,7 @@
 #include "HAL_LCD_interface.h"
 
 #define F_CPU 16000000UL
-#include "util/delay.h"
+//#include "util/delay.h"
 
 #define PUSHB0 PIN0 //PORT B
 #define PUSHB1 PIN4 //PORT B
@@ -30,7 +30,7 @@ int main(void)
 	HAL_LCD_putAtLoc(HAL_LCD_ROW01, HAL_LCD_COL02);
 	HAL_LCD_displayString((u8_t*)"Barbary");
 	
-	_delay_ms(500);
+	//_delay_ms(500);
 	
 	HAL_LCD_clearDisplay();
 
@@ -46,12 +46,12 @@ int main(void)
 			HAL_LCD_putAtLoc(HAL_LCD_ROW00, au8_gobk);
 			HAL_LCD_displayCharacter(au8_i + 42);
 			
-			_delay_ms(50);
+			//_delay_ms(50);
 			HAL_LCD_putAtLoc(HAL_LCD_ROW01, au8_gobk);
-			_delay_ms(50);
+			//_delay_ms(50);
 			HAL_LCD_displayCharacter(au8_i + 42);
 			
-			_delay_ms(1000);
+			//_delay_ms(1000);
 			
 			HAL_LCD_clearDisplay();
 		}

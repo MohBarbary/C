@@ -16,8 +16,8 @@
 #include "HAL_LCD_private.h"
 #include "HAL_LCD_interface.h"
 
-#define F_CPU 16000000UL
-#include "util/delay.h"
+//#define F_CPU 16000000UL
+//#include "util/delay.h"
   
 //End of INCLUDED FILES
 
@@ -45,7 +45,7 @@ static void HAL_LCD_sendCMD(u8_t au8_cmd){
 	
 	//sending enable signal for [ UPPER NIBBLE ]
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, LOW);	
-	_delay_us(50);
+	//_delay_us(50);
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 	
 	//Getting the pin state of au8_cmd and setting each pin with same value [ LOWER NIBBLE ]
@@ -56,7 +56,7 @@ static void HAL_LCD_sendCMD(u8_t au8_cmd){
 		
 	//sending enable signal for [ LOWER NIBBLE ]
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, LOW);
-	_delay_us(50);
+	//_delay_us(50);
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 		
 	return;
@@ -66,7 +66,7 @@ static void HAL_LCD_sendCMD(u8_t au8_cmd){
  * @brief HAL_LCD_sendData is a static helper function created to improve the readability of the code and to make it easier to understand. This function is used to process any data that
  * we pass to it from any other function.
  * 
- * @param au8_data is the variable containing the data that we will display on the LCD16x8
+ * @param au8_data is the variable containing the data that we will display on the LCD16x2
  */
 static void HAL_LCD_sendData(u8_t au8_data){
 	
@@ -84,7 +84,7 @@ static void HAL_LCD_sendData(u8_t au8_data){
 	
 	//sending enable signal for [ UPPER NIBBLE ]
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, LOW);
-	_delay_us(50);
+	//_delay_us(50);
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 	
 	//Getting the pin state of au8_cmd and setting each pin with same value [ LOWER NIBBLE ]
@@ -95,14 +95,14 @@ static void HAL_LCD_sendData(u8_t au8_data){
 	
 	//sending enable signal for [ LOWER NIBBLE ]
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, LOW);
-	_delay_us(50);
+	//_delay_us(50);
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 	
 	return;
 }
 
 /**
- * @brief HAL_LCD_init is the LCD16x8 Initializing function.
+ * @brief HAL_LCD_init is the LCD16x2 Initializing function.
  * 
  */
 void HAL_LCD_init(void){
@@ -117,7 +117,7 @@ void HAL_LCD_init(void){
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 	
 	//INITIALIZE THE LCD
-	_delay_ms(50);
+	//_delay_ms(50);
 	
 	//Set RS PIN OF CTRL PORT TO LOW (SEND CMD)
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_RS_PIN, LOW);
@@ -133,25 +133,25 @@ void HAL_LCD_init(void){
 	
 	//sending enable signal for [ UPPER NIBBLE ]
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, LOW);
-	_delay_us(50);
+	//_delay_us(50);
 	MCAL_GPIO_PinState(HAL_LCD_CTRL_PORT, HAL_LCD_EN_PIN, HIGH);
 	
 	//Function set command
 	HAL_LCD_sendCMD(0x2C);
 	
 	//wait for 50us
-	_delay_us(50);
+	//_delay_us(50);
 	
 	//Display ON/OFF command
 	HAL_LCD_sendCMD(0x0F);
 	
 	//wait for 50us
-	_delay_us(50);
+	//_delay_us(50);
 	
 	//CLEAR DISPLAY command
 	HAL_LCD_sendCMD(0x01);
 	
-	_delay_ms(2); //!SUPER IMPORTANT!//
+	//_delay_ms(2); //!SUPER IMPORTANT!//
 	
 	//Entry mode command
 	HAL_LCD_sendCMD(0x06);
@@ -160,9 +160,9 @@ void HAL_LCD_init(void){
 }
 
 /**
- * @brief HAL_LCD_displayCharacter is a function that displays the character passed as a parameter on the LCD16x8.
+ * @brief HAL_LCD_displayCharacter is a function that displays the character passed as a parameter on the LCD16x2.
  * 
- * @param au8_charData is the data that will be passed to the LCD16x8.
+ * @param au8_charData is the data that will be passed to the LCD16x2.
  */
 void HAL_LCD_displayCharacter(u8_t au8_charData){
 	
@@ -173,7 +173,7 @@ void HAL_LCD_displayCharacter(u8_t au8_charData){
 }
 
 /**
- * @brief HAL_LCD_displayString is a function that displays a given string on the LCD16x8 screen (!Be careful of character overflows!)
+ * @brief HAL_LCD_displayString is a function that displays a given string on the LCD16x2 screen (!Be careful of character overflows!)
  * 
  * @param pu8_srtData is a pointer to the 8 bits of dat that will be displayed. 
  */
@@ -190,7 +190,7 @@ void HAL_LCD_displayString(u8_t* pu8_srtData){
 }
 
 /**
- * @brief HAL_LCD_putAtLoc is a function that moves the cursor of the LCD16x8 to the DDRAM address passed.
+ * @brief HAL_LCD_putAtLoc is a function that moves the cursor of the LCD16x2 to the DDRAM address passed.
  * 
  * @param au8_row is the variable containing the row where we want to move (!DO NOT FORGET TO USE THE MACROS!)
  * @param au8_col is the variable containing the column where we want to move (!DO NOT FORGET TO USE THE MACROS!)
@@ -201,14 +201,14 @@ void HAL_LCD_putAtLoc(u8_t au8_row, u8_t au8_col){
 }
 
 /**
- * @brief HAL_LCD_clearDisplay is a function that clears the display of the LCD16x8.
+ * @brief HAL_LCD_clearDisplay is a function that clears the display of the LCD16x2.
  * 
  */
 void HAL_LCD_clearDisplay(void){
 	
 	HAL_LCD_sendCMD(0x01);
 	
-	_delay_ms(2);
+	//_delay_ms(2);
 	
 	return;
 }
